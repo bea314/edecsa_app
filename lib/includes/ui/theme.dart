@@ -6,8 +6,8 @@ class AppTheme {
   static const Color n2 = Color(0xff118AB2); //118AB2
   static const Color n3 = Color(0xff06D6A0); //06D6A0
   static const Color n4 = Color(0xffFFD166); //FFD166
-  static const Color n5 = Color(0xff118AB2); //118AB2
-  static const Color n6 = Color(0xffEF476F); //EF476F
+  static const Color n5 = Color(0xffEF476F); //EF476F
+  static const Color light = Colors.white;
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
 
@@ -65,7 +65,7 @@ class AppTheme {
 
         // AppBar Theme
         appBarTheme: const AppBarTheme(
-          color: n3,
+          color: n1,
           elevation: 0,
           centerTitle: true
         ),
@@ -73,6 +73,25 @@ class AppTheme {
         // Color fondo
         scaffoldBackgroundColor: n1,
 
+        drawerTheme: const DrawerThemeData(
+          backgroundColor: n2,
+          elevation: 0,
+        ),
+
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return n4;
+            }
+            return Colors.grey;
+          }),
+          trackColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.selected)) {
+              return light;
+            }
+            return light;
+          }),
+        )
 
   );
 
