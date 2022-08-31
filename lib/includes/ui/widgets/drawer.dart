@@ -10,31 +10,43 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/imagenes/paneles01.jpg',),
-                ),
+          margin: EdgeInsets.zero,
+          padding: EdgeInsets.zero,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/imagenes/paneles01.jpg',),
               ),
-            child: Container(),
             ),
-          ListTile(
-            // leading: const Icon(Icons.info_outline_rounded),
-            title: const Text('Información'),
-            onTap: (){},
+          child: Container(),
           ),
-          ListTile(
-            // leading: const Icon(Icons.devices_rounded),
-            title: const Text('Dispositivos'),
-            onTap: (){},
-          ),
-          ListTile(
-            // leading: const Icon(CupertinoIcons.gear_solid),
-            title: const Text('Configuración'),
-            onTap: (){},
-          ),
+          DrawerTileWidget(title: 'Información',),
+          const Divider(),
+          DrawerTileWidget(title: 'Dispositivos',),
+          const Divider(),
+          DrawerTileWidget(title: 'Configuración',),
+          const Divider(),
         ],
       ),
+    );
+  }
+}
+
+class DrawerTileWidget extends StatelessWidget {
+  String title;
+
+  DrawerTileWidget({
+    Key? key,
+    required this.title,
+  }) : super(key: key,);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      // leading: const Icon(Icons.info_outline_rounded),
+      title: Text(title),
+      onTap: (){},
     );
   }
 }
