@@ -10,8 +10,8 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-          margin: EdgeInsets.zero,
-          padding: EdgeInsets.zero,
+          margin: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(0.0),
           decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
