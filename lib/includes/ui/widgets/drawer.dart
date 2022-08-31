@@ -9,7 +9,15 @@ class DrawerWidget extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(child: Container()),
+          DrawerHeader(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/imagenes/paneles01.jpg',),
+                ),
+              ),
+            child: Container(),
+            ),
           ListTile(
             // leading: const Icon(Icons.info_outline_rounded),
             title: const Text('Información'),
