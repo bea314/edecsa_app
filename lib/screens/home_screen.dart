@@ -19,20 +19,14 @@ class HomeScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
         width: responsive.width,
         height: responsive.height,
-        child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+        child: Wrap(
+          // mainAxisSize: MainAxisSize.max,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: const[
+            MovimientoCombo(),
             SwitchesCombo(),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FloatingActionButton.large(onPressed: (){}, elevation: 0, child: const Text('START'),)
-              ],
-            ),
+            BtnPrincipal(),
           ],
         ),
       ))
