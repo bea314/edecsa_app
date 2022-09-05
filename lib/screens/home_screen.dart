@@ -13,7 +13,9 @@ class HomeScreen extends StatelessWidget {
     final responsive = Responsive(context);
 
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: const [
         MovimientoCombo(),
         SwitchesCombo(),

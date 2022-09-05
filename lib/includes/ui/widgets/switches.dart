@@ -1,6 +1,7 @@
-import 'package:edecsa_app/includes/ui/widgets/widget.dart';
-import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:edecsa_app/includes/utils/utils.dart';
+import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 
 class SwitchesCombo extends StatelessWidget {
   const SwitchesCombo({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class SwitchBundleWidget extends StatelessWidget {
         Row(
           children: [
             const SwitchWidget01(),
-            CircleAvatar(backgroundColor: Colors.green, maxRadius: responsive.ip(1.25))
+            CircleAvatar(backgroundColor: Colors.green, maxRadius: responsive.ip(1.0))
           ],
         )
       ],
@@ -100,13 +101,16 @@ class _SwitchWidget01State extends State<SwitchWidget01> {
 
   @override
   Widget build(BuildContext context) {
-    return Switch.adaptive(
-      value: _value, 
-      onChanged: (value){
-        setState(() {  
-          _value = value;  
-        });  
-      }
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: CupertinoSwitch(
+        value: _value, 
+        onChanged: (value){
+          setState(() {  
+            _value = value;  
+          });  
+        }
+      ),
     );
   }
 }

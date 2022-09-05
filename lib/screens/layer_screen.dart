@@ -23,7 +23,7 @@ class LayerScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
         width: responsive.width,
         height: responsive.height,
-        alignment: Alignment.center,
+        // alignment: Alignment.center,
         child: child
       ))
     );
