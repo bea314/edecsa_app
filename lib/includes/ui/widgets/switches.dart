@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:edecsa_app/includes/ui/theme.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 
@@ -54,7 +55,7 @@ class SwitchBundleWidget extends StatelessWidget {
         titulo02(context, title),
         Row(
           children: [
-            const SwitchWidget01(),
+            SwitchWidget01(),
             CircleAvatar(backgroundColor: Colors.green, maxRadius: responsive.ip(1.0))
           ],
         )
@@ -78,7 +79,7 @@ class SwitchBundle2Widget extends StatelessWidget {
         Row(
           children: [
             texto01(context, 'IZQUIERDA'),
-            const SwitchWidget01(),
+            SwitchWidget01(withTrack: false),
             texto01(context, 'DERECHA'),
           ],
         )
@@ -88,8 +89,11 @@ class SwitchBundle2Widget extends StatelessWidget {
 }
 
 class SwitchWidget01 extends StatefulWidget {
-  const SwitchWidget01({
-    Key? key,
+  bool withTrack;
+
+  SwitchWidget01({
+    Key? key
+    , this.withTrack = true
   }) : super(key: key);
 
   @override
@@ -104,6 +108,9 @@ class _SwitchWidget01State extends State<SwitchWidget01> {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: CupertinoSwitch(
+        trackColor: (widget.withTrack)?null:AppTheme.light,
+        activeColor: (widget.withTrack)?AppTheme.n4.withOpacity(0.6):AppTheme.light,
+        thumbColor: AppTheme.n4,
         value: _value, 
         onChanged: (value){
           setState(() {  
