@@ -18,7 +18,7 @@ class AppTheme {
         appBarTheme: const AppBarTheme(
           color: n1,
           elevation: 0,
-          centerTitle: true
+          centerTitle: true,
         ),
 
         // TextButton Theme
@@ -64,10 +64,10 @@ class AppTheme {
         primaryColor: n1,
 
         textTheme: const TextTheme(
-          bodyText1: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300),
+          bodyText1: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
           bodyText2: TextStyle(fontSize: 20.0),
           headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-          headline2: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w500),
+          headline2: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500),
           button: TextStyle(fontSize: 16.0),
         ),
 
@@ -75,7 +75,13 @@ class AppTheme {
         appBarTheme: const AppBarTheme(
           color: n1,
           elevation: 0,
-          centerTitle: true
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            size: 50.0
+          ),
+          actionsIconTheme: IconThemeData(
+            size: 45.0
+          ),
         ),
 
         // Color fondo

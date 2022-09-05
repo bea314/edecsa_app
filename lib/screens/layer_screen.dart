@@ -17,7 +17,9 @@ class LayerScreen extends StatelessWidget {
     final responsive = Responsive(context);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: actions,
+      ),
       drawer: const DrawerWidget(),
       body: SafeArea(child: Container(
         padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
@@ -27,5 +29,24 @@ class LayerScreen extends StatelessWidget {
         child: child
       ))
     );
+  }
+
+  List<Widget> get actions {
+    return <Widget>[
+        IconButton(
+          icon: const Icon(
+            Icons.wifi, // Iconos: wifi, wifi_1_bar, wifi_2_bar
+            color: Colors.white,
+          ),
+          onPressed: () => null,
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.battery_4_bar, // Iconos: battery_0_bar, battery_1_bar, ..., battery_alert, battery_charging_full
+            color: Colors.white,
+          ),
+          onPressed: () => null,
+        )
+      ];
   }
 }
