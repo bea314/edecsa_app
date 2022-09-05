@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'EDECSA',
-      home: const HomeScreen(),
+      home: LayerScreen(child: const HomeScreen()),
       theme: AppTheme.darkTheme
     );
   }
