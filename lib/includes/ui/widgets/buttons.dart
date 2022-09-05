@@ -1,4 +1,5 @@
 import 'package:edecsa_app/includes/ui/theme.dart';
+import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
@@ -11,9 +12,9 @@ class MovimientoCombo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        Text('MOVIMIENTO', textAlign: TextAlign.center,),
-        FlechasBundle()
+      children: [
+        titulo02(context, 'MOVIMIENTO'),
+        const FlechasBundle()
       ],
     );
   }

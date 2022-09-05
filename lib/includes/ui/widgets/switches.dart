@@ -1,3 +1,4 @@
+import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class SwitchesCombo extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: responsive.ip(1)),
-              child: SwitchBundleWidget('DESPLAZAMIENTO'),
+              child: SwitchBundle2Widget('DESPLAZAMIENTO'),
             ),
           ],
         ),
@@ -49,11 +50,35 @@ class SwitchBundleWidget extends StatelessWidget {
     final responsive = Responsive(context);
     return Column(
       children: [
-        Text(title, textAlign: TextAlign.center),
+        titulo02(context, title),
         Row(
           children: [
             const SwitchWidget01(),
             CircleAvatar(backgroundColor: Colors.green, maxRadius: responsive.ip(1.25))
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class SwitchBundle2Widget extends StatelessWidget {
+   
+  SwitchBundle2Widget(this.title);
+
+  String title;
+  
+  @override
+  Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+    return Column(
+      children: [
+        titulo02(context, title),
+        Row(
+          children: [
+            texto01(context, 'IZQUIERDA'),
+            const SwitchWidget01(),
+            texto01(context, 'DERECHA'),
           ],
         )
       ],

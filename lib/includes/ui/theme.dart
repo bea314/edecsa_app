@@ -63,6 +63,14 @@ class AppTheme {
         // Color primario
         primaryColor: n1,
 
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300),
+          bodyText2: TextStyle(fontSize: 20.0),
+          headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          headline2: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w500),
+          button: TextStyle(fontSize: 16.0),
+        ),
+
         // AppBar Theme
         appBarTheme: const AppBarTheme(
           color: n1,
