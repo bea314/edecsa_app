@@ -27,7 +27,7 @@ class DrawerWidget extends StatelessWidget {
           const Divider(),
           DrawerTileWidget(
             title: 'Créditos',
-            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
+            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const AboutScreen(),)),
           ),
           const Divider(),
         ],
