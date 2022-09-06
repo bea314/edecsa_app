@@ -31,7 +31,7 @@ class FlechasBundle extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Flecha(mov: DirMov.izquierda,),
@@ -51,8 +51,8 @@ class Flecha extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     return IconButton(
-      icon: (mov == DirMov.derecha) ?RotatedBox(quarterTurns: 2, child: Image.asset("assets/icons/left-arrow02.png"))
-      :Image.asset("assets/icons/left-arrow02.png"),
+      icon: (mov == DirMov.derecha) ?RotatedBox(quarterTurns: 2, child: Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,))
+      :Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,),
       iconSize: responsive.ip(15),
       splashRadius: responsive.ip(9),
       onPressed: () {

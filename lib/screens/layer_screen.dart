@@ -22,7 +22,7 @@ class LayerScreen extends StatelessWidget {
       ),
       drawer: const DrawerWidget(),
       body: SafeArea(child: Container(
-        padding: EdgeInsets.symmetric(horizontal: responsive.wp(5)),
+        padding: EdgeInsets.symmetric(horizontal: responsive.wp(2)),
         width: responsive.width,
         height: responsive.height,
         // alignment: Alignment.center,
