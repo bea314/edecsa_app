@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:edecsa_app/screens/screens.dart';
+import 'package:page_transition/page_transition.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({ Key? key, }) : super(key: key);
@@ -9,22 +10,25 @@ class DrawerWidget extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
-          margin: const EdgeInsets.all(0.0),
-          padding: const EdgeInsets.all(0.0),
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/imagenes/paneles01.jpg',),
-              ),
-            ),
-          child: Container(),
+          DrawerTileWidget(
+            title: 'Inicio',
+            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const HomeScreen(),)),
           ),
-          DrawerTileWidget(title: 'Información',),
           const Divider(),
-          DrawerTileWidget(title: 'Dispositivos',),
+          DrawerTileWidget(
+            title: 'Dispositivos',
+            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
+          ),
           const Divider(),
-          DrawerTileWidget(title: 'Configuración',),
+          DrawerTileWidget(
+            title: 'Configuración', 
+            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
+          ),
+          const Divider(),
+          DrawerTileWidget(
+            title: 'Créditos',
+            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
+          ),
           const Divider(),
         ],
       ),
@@ -34,19 +38,23 @@ class DrawerWidget extends StatelessWidget {
 
 class DrawerTileWidget extends StatelessWidget {
   String title;
+  IconData? icon;
+  void Function()? ontap;
 
   DrawerTileWidget({
-    Key? key,
-    required this.title,
+    Key? key
+    , required this.title
+    , this.icon
+    , this.ontap
   }) : super(key: key,);
 
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      // leading: const Icon(Icons.info_outline_rounded),
+      leading: (icon == null) ?null :const Icon(Icons.emergency_rounded),
       title: Text(title),
-      onTap: (){},
+      onTap: ontap,
     );
   }
 }
