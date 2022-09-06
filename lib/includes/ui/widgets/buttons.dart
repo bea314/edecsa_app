@@ -1,7 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:edecsa_app/includes/ui/theme.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
 
 enum DirMov {derecha, izquierda}
@@ -27,13 +26,18 @@ class FlechasBundle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Flecha(mov: DirMov.izquierda,),
-        Flecha(mov: DirMov.derecha,),
-      ],
+    final responsive = Responsive(context);
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Flecha(mov: DirMov.izquierda,),
+          Flecha(mov: DirMov.derecha,),
+        ],
+      ),
     );
   }
 }
@@ -47,13 +51,12 @@ class Flecha extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     return IconButton(
-      icon: (mov == DirMov.derecha) ?const Icon(Icons.keyboard_double_arrow_right_rounded)
-      :const Icon(Icons.keyboard_double_arrow_left_rounded),
-      // icon: (mov == DirMov.derecha) ?Icon(Icons.arrow_forward_rounded)
-      // :Icon(Icons.arrow_back_rounded),
+      icon: (mov == DirMov.derecha) ?RotatedBox(quarterTurns: 2, child: Image.asset("assets/icons/left-arrow02.png"))
+      :Image.asset("assets/icons/left-arrow02.png"),
       iconSize: responsive.ip(15),
+      splashRadius: responsive.ip(9),
       onPressed: () {
-        //
+        // TODO
       },
     );
   }

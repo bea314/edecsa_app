@@ -77,10 +77,10 @@ class AppTheme {
           elevation: 0,
           centerTitle: true,
           iconTheme: IconThemeData(
-            size: 50.0
+            size: 45.0
           ),
           actionsIconTheme: IconThemeData(
-            size: 45.0
+            size: 35.0
           ),
         ),
 
