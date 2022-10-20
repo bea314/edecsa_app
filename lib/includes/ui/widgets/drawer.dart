@@ -10,24 +10,25 @@ class DrawerWidget extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
+          DrawerHeader( child: Container(), ),
           DrawerTileWidget(
             title: 'Inicio',
-            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const HomeScreen(),)),
+            ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const HomeScreen(),)),
           ),
           const Divider(),
           DrawerTileWidget(
             title: 'Dispositivos',
-            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
+            ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
           ),
           const Divider(),
           DrawerTileWidget(
             title: 'Configuración', 
-            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
+            ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
           ),
           const Divider(),
           DrawerTileWidget(
-            title: 'Créditos',
-            ontap: () => Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: const AboutScreen(),)),
+            title: 'Acerca De',
+            ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const AboutScreen(),)),
           ),
           const Divider(),
         ],
