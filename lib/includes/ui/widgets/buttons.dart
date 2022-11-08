@@ -1,7 +1,9 @@
+import 'package:edecsa_app/includes/providers/global_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:edecsa_app/includes/ui/theme.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 enum DirMov {derecha, izquierda}
 
@@ -62,48 +64,84 @@ class Flecha extends StatelessWidget {
   }
 }
 
-class BtnPrincipal extends StatelessWidget {
-  const BtnPrincipal({
-    Key? key,
+class BigButton extends StatelessWidget {
+  BigButton({
+    Key? key
+    , required this.textSize
+    , required this.width
+    , this.splashColor = AppTheme.n1
+    , this.colorButton = AppTheme.n3
+    , required this.text
+    , required this.onTap
+    , this.onTapCancel
   }) : super(key: key);
+
+  void Function()? onTap;
+  void Function()? onTapCancel;
+
+  String text;
+  double textSize;
+  double width;
+  Color? splashColor;
+  Color? colorButton;
 
   @override
   Widget build(BuildContext context) {
-    final responsive = Responsive(context);
-    final size = responsive.ip(4);
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        // FloatingActionButton.large(onPressed: (){}, elevation: 0, child: const Text('START'),)
-        // Container(
-        //   decoration: BoxDecoration(shape: BoxShape.circle),
-        //   child: InkWell(
-        //     onTap: () {
-        //       //
-        //     },
-        //     // ignore: avoid_returning_null_for_void
-        //     onTapCancel: () => null,
-        //     child: CircleAvatar(backgroundColor: AppTheme.n3, radius: radius, child: FittedBox(child: Text('START'), fit: BoxFit.contain,),)
-        //   ),
-        // )
-        FittedBox(
-          fit: BoxFit.contain,
-          child: InkWell(
-            onTap: () => print('START'),
-            onTapCancel: () => print('CANCEL'),
-            child: MaterialButton(
-              onPressed: () {print('START2');},
-              color: AppTheme.n3,
-              padding: EdgeInsets.all(size*1.5),
-              shape: const CircleBorder(),
-              child:  Text('START', style: TextStyle(fontSize: size),),
-            ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(width),
+      child: Material(
+        child: InkWell(
+          splashColor: splashColor,
+          onTap: onTap, // () => onTap()
+          onTapCancel: onTapCancel, 
+          child: Ink(
+            color: colorButton,
+            width: width, height: width,
+            padding: EdgeInsets.all(textSize),
+            child:  FittedBox(fit: BoxFit.contain, child: Text(text, style: TextStyle(fontSize: textSize),)),
           ),
-        )
+        ),
+      ),
+    );
+  }
+}
 
-      ],
+class BtnPrincipal extends StatelessWidget {
+  BtnPrincipal({
+    Key? key
+  }) : super(key: key);
+
+  void onTap(GlobalProvider global) {
+    if(global.rState == true) {
+      // STOP
+      global.rState = false;
+    } else {
+      // START
+      global.rState = true;
+    }
+    print(global.rState);
+  }
+  void onTapCancel(GlobalProvider global) {}
+
+  Color splashColor = AppTheme.n1;
+  Color colorButton = AppTheme.n3;
+  Color colorButton2 = AppTheme.n5;
+  
+  @override
+  Widget build(BuildContext context) {
+    final global = Provider.of<GlobalProvider>(context, listen: false);
+    final responsive = Responsive(context);
+    final size = responsive.ip(2);
+    final width = responsive.wp(40);
+    return Consumer<GlobalProvider>(
+      builder: (context, global, child) {
+        return BigButton(
+          text: (global.rState == true)?'STOP':'START', 
+          colorButton: (global.rState == true)?colorButton2:colorButton,
+          textSize: size, width: width, 
+          onTap: () => onTap(global), onTapCancel: () => onTapCancel(global),
+        );
+      },
     );
   }
 }

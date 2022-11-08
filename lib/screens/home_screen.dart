@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
+      children: [
         MovimientoCombo(),
         SwitchesCombo(),
         BtnPrincipal(),

@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:edecsa_app/includes/providers/global_provider.dart';
+
 import 'package:edecsa_app/includes/ui/theme.dart';
 import 'package:edecsa_app/screens/screens.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(lazy: false, create: (_) => GlobalProvider()),
+    ],
+  child: MyApp())
+);
 
 class MyApp extends StatelessWidget {
   @override
