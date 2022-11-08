@@ -1,9 +1,11 @@
-import 'package:edecsa_app/includes/providers/global_provider.dart';
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:edecsa_app/includes/providers/global_provider.dart';
+import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:edecsa_app/includes/ui/theme.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
-import 'package:edecsa_app/includes/utils/utils.dart';
-import 'package:provider/provider.dart';
 
 enum DirMov {derecha, izquierda}
 

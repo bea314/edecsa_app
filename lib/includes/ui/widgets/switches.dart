@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:edecsa_app/includes/providers/global_provider.dart';
 import 'package:edecsa_app/includes/ui/theme.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 
 class SwitchesCombo extends StatelessWidget {
-  const SwitchesCombo({Key? key}) : super(key: key);
+  SwitchesCombo({Key? key}) : super(key: key);
+
+  void onRodillo(GlobalProvider global) {
+    (global.rRdllState == false)?global.rRdllState=true:global.rRdllState=false;
+    // print('RODILLO: ${global.rRdllState}');
+  }
+  void onAgua(GlobalProvider global) {
+    (global.rAguaState == false)?global.rAguaState=true:global.rAguaState=false;
+    // print('AGUA: ${global.rAguaState}');
+  }
+
+  Color colorButton  = AppTheme.n3;
+  Color colorButton2 = AppTheme.n5;
 
   @override
   Widget build(BuildContext context) {
+    final global = Provider.of<GlobalProvider>(context, listen: false);
     final responsive = Responsive(context);
     return Container(
       height: responsive.hp(25),
@@ -20,14 +37,20 @@ class SwitchesCombo extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: responsive.ip(1)),
               width: responsive.width,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SwitchBundleWidget('RODILLO'),
-                  SwitchBundleWidget('AGUA'),
-                ],
+              child: Consumer<GlobalProvider>(
+                builder: (context, global, child) {
+                  bool stateR = global.rRdllState;
+                  bool stateA = global.rAguaState;
+                  return Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SwitchBundleWidget('RODILLO', (stateR)?colorButton:colorButton2, () => onRodillo(global)),
+                      SwitchBundleWidget('AGUA', (stateA)?colorButton:colorButton2, () => onAgua(global)),
+                    ],
+                  );
+                },
               ),
             ),
             Padding(
@@ -43,9 +66,11 @@ class SwitchesCombo extends StatelessWidget {
 
 class SwitchBundleWidget extends StatelessWidget {
    
-  SwitchBundleWidget(this.title);
+  SwitchBundleWidget(this.title, this.circleColor, this.function);
 
   String title;
+  Color circleColor;
+  void Function() function;
   
   @override
   Widget build(BuildContext context) {
@@ -55,8 +80,8 @@ class SwitchBundleWidget extends StatelessWidget {
         titulo02(context, title),
         Row(
           children: [
-            SwitchWidget01(),
-            CircleAvatar(backgroundColor: Colors.green, maxRadius: responsive.ip(1.0))
+            SwitchWidget01(function: function),
+            CircleAvatar(backgroundColor:  circleColor, maxRadius: responsive.ip(1.0))
           ],
         )
       ],
@@ -90,10 +115,12 @@ class SwitchBundle2Widget extends StatelessWidget {
 
 class SwitchWidget01 extends StatefulWidget {
   bool withTrack;
+  void Function()? function;
 
   SwitchWidget01({
     Key? key
     , this.withTrack = true
+    , this.function
   }) : super(key: key);
 
   @override
@@ -113,9 +140,8 @@ class _SwitchWidget01State extends State<SwitchWidget01> {
         thumbColor: AppTheme.n4,
         value: _value, 
         onChanged: (value){
-          setState(() {  
-            _value = value;  
-          });  
+          if(widget.function != null)widget.function!();
+          setState(() { _value = value; });  
         }
       ),
     );
