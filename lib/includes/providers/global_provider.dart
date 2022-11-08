@@ -6,6 +6,8 @@ class GlobalProvider extends ChangeNotifier {
   bool _rRdllState  = false;
   bool _rAguaState  = false;
 
+  bool _onTest  = false;
+
   bool get rState => _rState;
   set rState(bool value) {
     if (value != _rState) {
@@ -30,4 +32,11 @@ class GlobalProvider extends ChangeNotifier {
     } 
   }
 
+  bool get onTest => _onTest;
+  set onTest(bool value) {
+    if (value != _onTest) {
+      _onTest = value;
+      notifyListeners();
+    } 
+  }
 }

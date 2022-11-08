@@ -19,6 +19,10 @@ class SwitchesCombo extends StatelessWidget {
     (global.rAguaState == false)?global.rAguaState=true:global.rAguaState=false;
     // print('AGUA: ${global.rAguaState}');
   }
+  void onTest(GlobalProvider global) {
+    (global.onTest == false)?global.onTest=true:global.onTest=false;
+    print((global.onTest)?'DERECHA':'IZQUIERDA');
+  }
 
   Color colorButton  = AppTheme.n3;
   Color colorButton2 = AppTheme.n5;
@@ -32,16 +36,17 @@ class SwitchesCombo extends StatelessWidget {
       width: responsive.width,
       child: FittedBox(
         fit: BoxFit.contain,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: responsive.ip(1)),
-              width: responsive.width,
-              child: Consumer<GlobalProvider>(
-                builder: (context, global, child) {
-                  bool stateR = global.rRdllState;
-                  bool stateA = global.rAguaState;
-                  return Row(
+        child: Consumer<GlobalProvider>(
+          builder: (context, global, child) {
+            bool stateR = global.rRdllState;
+            bool stateA = global.rAguaState;
+            bool stateT = global.onTest;
+            return Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: responsive.ip(1)),
+                  width: responsive.width,
+                  child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,15 +54,15 @@ class SwitchesCombo extends StatelessWidget {
                       SwitchBundleWidget('RODILLO', (stateR)?colorButton:colorButton2, () => onRodillo(global)),
                       SwitchBundleWidget('AGUA', (stateA)?colorButton:colorButton2, () => onAgua(global)),
                     ],
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: responsive.ip(1)),
-              child: SwitchBundle2Widget('DESPLAZAMIENTO'),
-            ),
-          ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: responsive.ip(1)),
+                  child: SwitchBundle2Widget('DESPLAZAMIENTO', stateT, () => onTest(global)),
+                ),
+              ],
+            );
+          }
         ),
       ),
     );
@@ -91,9 +96,11 @@ class SwitchBundleWidget extends StatelessWidget {
 
 class SwitchBundle2Widget extends StatelessWidget {
    
-  SwitchBundle2Widget(this.title);
+  SwitchBundle2Widget(this.title, this.onBold, this.function);
 
   String title;
+  bool onBold;
+  void Function() function;
   
   @override
   Widget build(BuildContext context) {
@@ -103,9 +110,9 @@ class SwitchBundle2Widget extends StatelessWidget {
         titulo02(context, title),
         Row(
           children: [
-            texto01(context, 'IZQUIERDA'),
-            SwitchWidget01(withTrack: false),
-            texto01(context, 'DERECHA'),
+            (onBold)?texto01(context, 'IZQUIERDA',):texto03(context, 'IZQUIERDA',),
+            SwitchWidget01(withTrack: false, function: function),
+            (onBold)?texto03(context, 'DERECHA',):texto01(context, 'DERECHA',),
           ],
         )
       ],
@@ -139,7 +146,7 @@ class _SwitchWidget01State extends State<SwitchWidget01> {
         activeColor: (widget.withTrack)?AppTheme.n4.withOpacity(0.6):AppTheme.light,
         thumbColor: AppTheme.n4,
         value: _value, 
-        onChanged: (value){
+        onChanged: (value) {
           if(widget.function != null)widget.function!();
           setState(() { _value = value; });  
         }

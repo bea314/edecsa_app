@@ -63,6 +63,7 @@ class AppTheme {
         // Color primario
         primaryColor: n1,
 
+        // Text Theme
         textTheme: const TextTheme(
           bodyText1: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
           bodyText2: TextStyle(fontSize: 20.0),
