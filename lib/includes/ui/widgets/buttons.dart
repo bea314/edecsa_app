@@ -149,7 +149,6 @@ class BtnPrincipal extends StatelessWidget {
     } else {
       global.rState = true;   // START
     }
-    print(global.rState);
   }
   void onTapCancel(GlobalProvider global) {}
 

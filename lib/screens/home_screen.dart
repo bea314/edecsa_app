@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:edecsa_app/screens/screens.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
+import 'package:edecsa_app/includes/providers/global_provider.dart';
 
 class HomeScreen extends StatelessWidget {
    
@@ -18,12 +20,26 @@ class HomeView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    // TODO: Quitar las variables de provider en este archivo cuando no se necesiten revisar todas las variables
+    final global = Provider.of<GlobalProvider>(context, listen: true);
+
+    print('''
+        -----------------------------
+        ROBOT   :   ${global.rState}
+        AGUA    :   ${global.rAguaState}
+        RDLLO   :   ${global.rRdllState}
+        MANUAL  :   ${(global.mMovDer)?'derecha':(global.mMovIzq)?'izquierda':'NULL'}
+        AUTO    :   ${(global.aDesplz)?'derecha':'izquierda'}
+        MOV     :   WIP
+        -----------------------------
+    ''');
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        MovimientoCombo(),
+        const MovimientoCombo(),
         SwitchesCombo(),
         BtnPrincipal(),
       ],
