@@ -28,8 +28,14 @@ class FlechasBundle extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void onTapIzqDOWN(GlobalProvider global) => global.mMovIzq = true;
+  void onTapIzqUP(GlobalProvider global)   => global.mMovIzq = false;
+  void onTapDerDOWN(GlobalProvider global) => global.mMovDer = true;
+  void onTapDerUP(GlobalProvider global)   => global.mMovDer = false;
+
   @override
   Widget build(BuildContext context) {
+    final global = Provider.of<GlobalProvider>(context, listen: false);
     final responsive = Responsive(context);
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -38,8 +44,8 @@ class FlechasBundle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flecha(mov: DirMov.izquierda,),
-          Flecha(mov: DirMov.derecha,),
+          Flecha(mov: DirMov.izquierda, onTapDown: () => onTapIzqDOWN(global), onTapUp: () => onTapIzqUP(global),),
+          Flecha(mov: DirMov.derecha, onTapDown: () => onTapDerDOWN(global), onTapUp: () => onTapDerUP(global),),
         ],
       ),
     );
@@ -49,19 +55,43 @@ class FlechasBundle extends StatelessWidget {
 class Flecha extends StatelessWidget {
   DirMov? mov;
 
-  Flecha({Key? key, required this.mov,}) : super(key: key);
+  Flecha({Key? key
+    , required this.mov
+    , this.size
+    , this.splashColor = AppTheme.n1
+    , this.colorButton = AppTheme.n1
+    , required this.onTapDown // presionado
+    , required this.onTapUp   // despresionado
+    , this.onTapCancel
+  }) : super(key: key);
+  
+  void Function() onTapDown;
+  void Function() onTapUp;
+  void Function()? onTapCancel;
+
+  double? size;
+  Color? splashColor;
+  Color? colorButton;
 
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
-    return IconButton(
-      icon: (mov == DirMov.derecha) ?RotatedBox(quarterTurns: 2, child: Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,))
-      :Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,),
-      iconSize: responsive.ip(15),
-      splashRadius: responsive.ip(9),
-      onPressed: () {
-        // TODO
-      },
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size??responsive.ip(15)),
+      child: Material(
+        child: InkWell(
+          splashColor: splashColor,
+          onTapDown:(_) => onTapDown(),
+          onTapUp:(_) => onTapUp(),
+          onTapCancel: onTapCancel, 
+          child: Ink(
+            color: colorButton,
+            width: size??responsive.ip(15), height: size??responsive.ip(15),
+            child: (mov == DirMov.derecha)?RotatedBox(quarterTurns: 2, child: Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,))
+              :Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,),
+          ),
+        ),
+      )
     );
   }
 }
@@ -115,11 +145,9 @@ class BtnPrincipal extends StatelessWidget {
 
   void onTap(GlobalProvider global) {
     if(global.rState == true) {
-      // STOP
-      global.rState = false;
+      global.rState = false;  // STOP
     } else {
-      // START
-      global.rState = true;
+      global.rState = true;   // START
     }
     print(global.rState);
   }

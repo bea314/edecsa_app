@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class GlobalProvider extends ChangeNotifier {
 
-  bool _rState      = false;
-  bool _rRdllState  = false;
-  bool _rAguaState  = false;
+  bool _rState      = false;  // estado robot ON OFF
+  bool _rRdllState  = false;  // estado rodillo
+  bool _rAguaState  = false;  // estado agua
+  bool _mMovIzq     = false;  // mov manual izquierdo
+  bool _mMovDer     = false;  // mov manual derecho
 
   bool _onTest  = false;
 
@@ -28,6 +30,22 @@ class GlobalProvider extends ChangeNotifier {
   set rAguaState(bool value) {
     if (value != _rAguaState) {
       _rAguaState = value;
+      notifyListeners();
+    } 
+  }
+
+  bool get mMovIzq => _mMovIzq;
+  set mMovIzq(bool value) {
+    if (value != _mMovIzq) {
+      _mMovIzq = value;
+      notifyListeners();
+    } 
+  }
+
+  bool get mMovDer => _mMovDer;
+  set mMovDer(bool value) {
+    if (value != _mMovDer) {
+      _mMovDer = value;
       notifyListeners();
     } 
   }
