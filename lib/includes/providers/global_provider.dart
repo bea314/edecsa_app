@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class GlobalProvider extends ChangeNotifier {
 
-  bool _rState      = false;  // estado robot ON OFF
-  bool _rRdllState  = false;  // estado rodillo
-  bool _rAguaState  = false;  // estado agua
+  bool _rState      = false;  // estado de robot modo ON OFF
+  bool _rRdllState  = false;  // estado de rodillo
+  bool _rAguaState  = false;  // estado de agua
   bool _mMovIzq     = false;  // mov manual izquierdo
   bool _mMovDer     = false;  // mov manual derecho
+  bool _aDesplz     = false;  // estado de desplazamiento automatico
 
   bool _onTest  = false;
 
@@ -50,11 +51,19 @@ class GlobalProvider extends ChangeNotifier {
     } 
   }
 
-  bool get onTest => _onTest;
-  set onTest(bool value) {
-    if (value != _onTest) {
-      _onTest = value;
+  bool get aDesplz => _aDesplz;
+  set aDesplz(bool value) {
+    if (value != _aDesplz) {
+      _aDesplz = value;
       notifyListeners();
     } 
   }
+
+  // bool get onTest => _onTest;
+  // set onTest(bool value) {
+  //   if (value != _onTest) {
+  //     _onTest = value;
+  //     notifyListeners();
+  //   } 
+  // }
 }

@@ -11,18 +11,9 @@ import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 class SwitchesCombo extends StatelessWidget {
   SwitchesCombo({Key? key}) : super(key: key);
 
-  void onRodillo(GlobalProvider global) {
-    (global.rRdllState == false)?global.rRdllState=true:global.rRdllState=false;
-    // print('RODILLO: ${global.rRdllState}');
-  }
-  void onAgua(GlobalProvider global) {
-    (global.rAguaState == false)?global.rAguaState=true:global.rAguaState=false;
-    // print('AGUA: ${global.rAguaState}');
-  }
-  void onTest(GlobalProvider global) {
-    (global.onTest == false)?global.onTest=true:global.onTest=false;
-    print((global.onTest)?'DERECHA':'IZQUIERDA');
-  }
+  void onRodillo(GlobalProvider global) => (global.rRdllState == false)?global.rRdllState=true:global.rRdllState=false;
+  void onAgua(GlobalProvider global)    => (global.rAguaState == false)?global.rAguaState=true:global.rAguaState=false;
+  void onTest(GlobalProvider global)    => (global.aDesplz == false)?global.aDesplz=true:global.aDesplz=false;
 
   Color colorButton  = AppTheme.n3;
   Color colorButton2 = AppTheme.n5;
@@ -40,7 +31,7 @@ class SwitchesCombo extends StatelessWidget {
           builder: (context, global, child) {
             bool stateR = global.rRdllState;
             bool stateA = global.rAguaState;
-            bool stateT = global.onTest;
+            bool stateT = global.aDesplz;
             return Column(
               children: [
                 Container(
