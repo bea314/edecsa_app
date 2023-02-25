@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:edecsa_app/includes/providers/wifi_core.dart';
 import 'package:edecsa_app/includes/utils/responsive.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 
@@ -33,13 +35,15 @@ class LayerScreen extends StatelessWidget {
 
   List<Widget> get actions {
     return <Widget>[
+      Consumer<WifiCore>(builder: (_, bloc, __) =>
         IconButton(
-          icon: const Icon(
-            Icons.wifi, // Iconos: wifi, wifi_1_bar, wifi_2_bar
+          icon: Icon(
+            (bloc.isDeviceConnected)?Icons.wifi:Icons.wifi_1_bar, // Iconos: wifi, wifi_1_bar, wifi_2_bar
             color: Colors.white,
           ),
           onPressed: () => null,
         ),
+      ),
         IconButton(
           icon: const Icon(
             Icons.battery_4_bar, // Iconos: battery_0_bar, battery_1_bar, ..., battery_alert, battery_charging_full
