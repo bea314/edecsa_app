@@ -1,36 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:edecsa_app/screens/screens.dart';
+
 import 'package:page_transition/page_transition.dart';
+
+import 'package:edecsa_app/config.dart';
+import 'package:edecsa_app/screens/screens.dart';
+import 'package:edecsa_app/includes/ui/theme.dart';
+import 'package:edecsa_app/includes/ui/widgets/widget.dart';
+import 'package:edecsa_app/includes/utils/utils.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({ Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader( child: Container(), ),
+          DrawerHeader(
+            padding: EdgeInsets.zero, margin: EdgeInsets.zero, decoration: const BoxDecoration(color: Colors.transparent), 
+            child: Image.asset(MEDIA.edecsa),
+          ),
+          SizedBox(height: responsive.hp(5),),
           DrawerTileWidget(
             title: 'Inicio',
             ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const HomeScreen(),)),
           ),
-          const Divider(),
+          const SimpleDividerWidget(),
           DrawerTileWidget(
             title: 'Dispositivos',
             ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
           ),
-          const Divider(),
+          const SimpleDividerWidget(),
           DrawerTileWidget(
             title: 'Configuración', 
             ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const ConfigScreen(),)),
           ),
-          const Divider(),
+          const SimpleDividerWidget(),
           DrawerTileWidget(
             title: 'Acerca De',
             ontap: () => Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const AboutScreen(),)),
           ),
-          const Divider(),
         ],
       ),
     );
@@ -38,11 +48,11 @@ class DrawerWidget extends StatelessWidget {
 }
 
 class DrawerTileWidget extends StatelessWidget {
-  String title;
-  IconData? icon;
-  void Function()? ontap;
+  final String title;
+  final IconData? icon;
+  final void Function()? ontap;
 
-  DrawerTileWidget({
+  const DrawerTileWidget({
     Key? key
     , required this.title
     , this.icon
@@ -54,7 +64,7 @@ class DrawerTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: (icon == null) ?null :const Icon(Icons.emergency_rounded),
-      title: Text(title),
+      title: texto03(context, title, textAlign: TextAlign.left, color: AppTheme.n1),
       onTap: ontap,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'package:edecsa_app/config.dart';
 import 'package:edecsa_app/includes/providers/global_provider.dart';
 import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:edecsa_app/includes/ui/theme.dart';
@@ -36,7 +37,7 @@ class FlechasBundle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final global = Provider.of<GlobalProvider>(context, listen: false);
-    final responsive = Responsive(context);
+    
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
@@ -53,9 +54,7 @@ class FlechasBundle extends StatelessWidget {
 }
 
 class Flecha extends StatelessWidget {
-  DirMov? mov;
-
-  Flecha({Key? key
+  const Flecha({Key? key
     , required this.mov
     , this.size
     , this.splashColor = AppTheme.n1
@@ -65,13 +64,14 @@ class Flecha extends StatelessWidget {
     , this.onTapCancel
   }) : super(key: key);
   
-  void Function() onTapDown;
-  void Function() onTapUp;
-  void Function()? onTapCancel;
+  final void Function() onTapDown;
+  final void Function() onTapUp;
+  final void Function()? onTapCancel;
 
-  double? size;
-  Color? splashColor;
-  Color? colorButton;
+  final DirMov? mov;
+  final double? size;
+  final Color? splashColor;
+  final Color? colorButton;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class Flecha extends StatelessWidget {
             color: colorButton,
             width: size??responsive.ip(15), height: size??responsive.ip(15),
             child: (mov == DirMov.derecha)?RotatedBox(quarterTurns: 2, child: Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,))
-              :Image.asset("assets/icons/left-arrow02.png", fit: BoxFit.contain,),
+              :Image.asset(MEDIA.arrow, fit: BoxFit.contain,),
           ),
         ),
       )
@@ -97,7 +97,7 @@ class Flecha extends StatelessWidget {
 }
 
 class BigButton extends StatelessWidget {
-  BigButton({
+  const BigButton({
     Key? key
     , required this.textSize
     , required this.width
@@ -108,14 +108,14 @@ class BigButton extends StatelessWidget {
     , this.onTapCancel
   }) : super(key: key);
 
-  void Function()? onTap;
-  void Function()? onTapCancel;
+  final void Function()? onTap;
+  final void Function()? onTapCancel;
 
-  String text;
-  double textSize;
-  double width;
-  Color? splashColor;
-  Color? colorButton;
+  final String text;
+  final double textSize;
+  final double width;
+  final Color? splashColor;
+  final Color? colorButton;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class BigButton extends StatelessWidget {
 }
 
 class BtnPrincipal extends StatelessWidget {
-  BtnPrincipal({
+  const BtnPrincipal({
     Key? key
   }) : super(key: key);
 
@@ -152,13 +152,12 @@ class BtnPrincipal extends StatelessWidget {
   }
   void onTapCancel(GlobalProvider global) {}
 
-  Color splashColor = AppTheme.n1;
-  Color colorButton = AppTheme.n3;
-  Color colorButton2 = AppTheme.n5;
+  final Color splashColor = AppTheme.n1;
+  final Color colorButton = AppTheme.n3;
+  final Color colorButton2 = AppTheme.n5;
   
   @override
   Widget build(BuildContext context) {
-    final global = Provider.of<GlobalProvider>(context, listen: false);
     final responsive = Responsive(context);
     final size = responsive.ip(2);
     final width = responsive.wp(40);

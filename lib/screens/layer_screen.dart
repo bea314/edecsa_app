@@ -6,10 +6,10 @@ import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 
 
 class LayerScreen extends StatelessWidget {
-  Widget child;
+  final Widget child;
 
    
-  LayerScreen({
+  const LayerScreen({
     Key? key
     , required this.child
   }) : super(key: key);
@@ -41,7 +41,7 @@ class LayerScreen extends StatelessWidget {
             (bloc.isDeviceConnected)?Icons.wifi:Icons.wifi_1_bar, // Iconos: wifi, wifi_1_bar, wifi_2_bar
             color: Colors.white,
           ),
-          onPressed: () => null,
+          onPressed: () {},
         ),
       ),
         IconButton(
@@ -49,7 +49,7 @@ class LayerScreen extends StatelessWidget {
             Icons.battery_4_bar, // Iconos: battery_0_bar, battery_1_bar, ..., battery_alert, battery_charging_full
             color: Colors.white,
           ),
-          onPressed: () => null,
+          onPressed: () {},
         )
       ];
   }

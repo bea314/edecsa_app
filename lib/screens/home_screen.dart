@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayerScreen(child: const HomeView());
+    return const LayerScreen(child: HomeView());
   }
 }
 
@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
     // TODO: Quitar las variables de provider en este archivo cuando no se necesiten revisar todas las variables
     final global = Provider.of<GlobalProvider>(context, listen: true);
 
-    print('''
+    debugPrint('''
         -----------------------------
         ROBOT   :   ${global.rState}
         AGUA    :   ${global.rAguaState}
@@ -38,8 +38,8 @@ class HomeView extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const MovimientoCombo(),
+      children: const [
+        MovimientoCombo(),
         SwitchesCombo(),
         BtnPrincipal(),
       ],

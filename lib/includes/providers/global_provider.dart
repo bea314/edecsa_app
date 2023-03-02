@@ -9,8 +9,6 @@ class GlobalProvider extends ChangeNotifier {
   bool _mMovDer     = false;  // mov manual derecho
   bool _aDesplz     = false;  // estado de desplazamiento automatico
 
-  bool _onTest  = false;
-
   bool get rState => _rState;
   set rState(bool value) {
     if (value != _rState) {
@@ -59,11 +57,4 @@ class GlobalProvider extends ChangeNotifier {
     } 
   }
 
-  // bool get onTest => _onTest;
-  // set onTest(bool value) {
-  //   if (value != _onTest) {
-  //     _onTest = value;
-  //     notifyListeners();
-  //   } 
-  // }
 }

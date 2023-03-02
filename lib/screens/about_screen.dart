@@ -8,7 +8,7 @@ class AboutScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return LayerScreen(child: const AboutView());
+    return const LayerScreen(child: AboutView());
   }
 }
 

@@ -18,10 +18,12 @@ void main() => runApp(
       ChangeNotifierProvider(lazy: false, create: (_) => WifiCore()),
       ChangeNotifierProvider(lazy: false, create: (_) => SocketIO(uri: CONFIG.socket, autoConnect: false)),
     ],
-  child: MyApp())
+  child: const MyApp())
 );
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -6,7 +6,7 @@ class ConfigScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return LayerScreen(child: const ConfigView());
+    return const LayerScreen(child: ConfigView());
   }
 
 }

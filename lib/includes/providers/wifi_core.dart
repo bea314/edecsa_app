@@ -4,21 +4,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-enum IConnectionStatus { Checking, Online, Offline }
+enum IConnectionStatus { checking, online, offline }
 
 class WifiCore extends ChangeNotifier {
 
   bool _isDeviceConnected = false;
   // late StreamSubscription<InternetConnectionStatus>  wifiStatusStream;
   late StreamSubscription<ConnectivityResult>  wifiStatusStream;
-  IConnectionStatus connectionStatus = IConnectionStatus.Checking;
+  IConnectionStatus connectionStatus = IConnectionStatus.checking;
 
   bool get isDeviceConnected => _isDeviceConnected;
   set isDeviceConnected(bool value) {
     if (value != _isDeviceConnected) {
       _isDeviceConnected = value;
-      if(isDeviceConnected == false) connectionStatus = IConnectionStatus.Offline;
-      if(isDeviceConnected == true) connectionStatus = IConnectionStatus.Online; 
+      if(isDeviceConnected == false) connectionStatus = IConnectionStatus.offline;
+      if(isDeviceConnected == true) connectionStatus = IConnectionStatus.online; 
       notifyListeners();
     } 
   }
@@ -29,30 +29,30 @@ class WifiCore extends ChangeNotifier {
   }
 
   Future<bool> wifiCheck(ConnectivityResult status) async {
-    print('----WIFI check $status');
+    debugPrint('----WIFI check $status');
     try {
       switch (status) {
         case ConnectivityResult.wifi:
-          print('WIFI ONLINE');
+          debugPrint('WIFI ONLINE');
           isDeviceConnected = true;
           break;
         case ConnectivityResult.mobile:
-          print('MOBILE ONLINE');
+          debugPrint('MOBILE ONLINE');
           isDeviceConnected = true;
           break;
         case ConnectivityResult.none:
-          print('OFFLINE');
+          debugPrint('OFFLINE');
           isDeviceConnected = false;
           break;
         default:
-          print('OFFLINE');
+          debugPrint('OFFLINE');
           isDeviceConnected = true;
       }
-      print('isDeviceConnected: ${isDeviceConnected}');
+      debugPrint('isDeviceConnected: $isDeviceConnected');
     } on SocketException catch (_) {
-      isDeviceConnected = false; print('not connected');
+      isDeviceConnected = false; debugPrint('not connected');
     } catch (_) {
-      isDeviceConnected = false; print('not connected');
+      isDeviceConnected = false; debugPrint('not connected');
     }
     return true;
   }

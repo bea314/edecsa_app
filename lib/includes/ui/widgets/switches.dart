@@ -9,20 +9,19 @@ import 'package:edecsa_app/includes/utils/utils.dart';
 import 'package:edecsa_app/includes/ui/widgets/widget.dart';
 
 class SwitchesCombo extends StatelessWidget {
-  SwitchesCombo({Key? key}) : super(key: key);
+  const SwitchesCombo({Key? key}) : super(key: key);
 
   void onRodillo(GlobalProvider global) => (global.rRdllState == false)?global.rRdllState=true:global.rRdllState=false;
   void onAgua(GlobalProvider global)    => (global.rAguaState == false)?global.rAguaState=true:global.rAguaState=false;
   void onTest(GlobalProvider global)    => (global.aDesplz == false)?global.aDesplz=true:global.aDesplz=false;
 
-  Color colorButton  = AppTheme.n3;
-  Color colorButton2 = AppTheme.n5;
+  final Color colorButton  = AppTheme.n3;
+  final Color colorButton2 = AppTheme.n5;
 
   @override
   Widget build(BuildContext context) {
-    final global = Provider.of<GlobalProvider>(context, listen: false);
     final responsive = Responsive(context);
-    return Container(
+    return SizedBox(
       height: responsive.hp(25),
       width: responsive.width,
       child: FittedBox(
@@ -62,11 +61,11 @@ class SwitchesCombo extends StatelessWidget {
 
 class SwitchBundleWidget extends StatelessWidget {
    
-  SwitchBundleWidget(this.title, this.circleColor, this.function);
+  const SwitchBundleWidget(this.title, this.circleColor, this.function, {super.key});
 
-  String title;
-  Color circleColor;
-  void Function() function;
+  final String title;
+  final Color circleColor;
+  final void Function() function;
   
   @override
   Widget build(BuildContext context) {
@@ -87,15 +86,14 @@ class SwitchBundleWidget extends StatelessWidget {
 
 class SwitchBundle2Widget extends StatelessWidget {
    
-  SwitchBundle2Widget(this.title, this.onBold, this.function);
+  const SwitchBundle2Widget(this.title, this.onBold, this.function, {super.key});
 
-  String title;
-  bool onBold;
-  void Function() function;
+  final String title;
+  final bool onBold;
+  final void Function() function;
   
   @override
   Widget build(BuildContext context) {
-    final responsive = Responsive(context);
     return Column(
       children: [
         titulo02(context, title),
@@ -112,10 +110,10 @@ class SwitchBundle2Widget extends StatelessWidget {
 }
 
 class SwitchWidget01 extends StatefulWidget {
-  bool withTrack;
-  void Function()? function;
+  final bool withTrack;
+  final void Function()? function;
 
-  SwitchWidget01({
+  const SwitchWidget01({
     Key? key
     , this.withTrack = true
     , this.function

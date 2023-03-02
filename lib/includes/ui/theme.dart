@@ -23,7 +23,7 @@ class AppTheme {
 
         // TextButton Theme
         textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(primary: n1),
+          style: TextButton.styleFrom(foregroundColor: n1,),
         ),
 
         // Card Theme
@@ -37,7 +37,7 @@ class AppTheme {
         // ElevatedButton Theme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: n1,
+            backgroundColor: n1,
             shape: const StadiumBorder(),
             elevation: 0,
           ),
@@ -65,11 +65,11 @@ class AppTheme {
 
         // Text Theme
         textTheme: const TextTheme(
-          bodyText1: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
-          bodyText2: TextStyle(fontSize: 20.0),
-          headline1: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-          headline2: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500),
-          button: TextStyle(fontSize: 16.0),
+          bodyLarge: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+          bodyMedium: TextStyle(fontSize: 20.0),
+          titleLarge: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+          titleMedium: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w500),
+          labelMedium: TextStyle(fontSize: 16.0),
         ),
 
         // AppBar Theme
@@ -89,7 +89,7 @@ class AppTheme {
         scaffoldBackgroundColor: n1,
 
         drawerTheme: const DrawerThemeData(
-          backgroundColor: n2,
+          backgroundColor: light,
           elevation: 0,
         ),
 
